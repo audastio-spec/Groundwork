@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: TK-SITE-URL/sitemap.xml
+
+# Disallow crawling of form submission endpoints
+Disallow: /thank-you
