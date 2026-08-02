@@ -673,22 +673,14 @@
         </div>
 
         <div class="form-section">
-          <!-- Formspree endpoint — replace TK-FORMSPREE-STAYS-ID with your Formspree form ID -->
-          <form action="https://formspree.io/f/TK-FORMSPREE-STAYS-ID" method="POST" data-form="stays" novalidate>
-
-            <!--
-            Netlify Forms alternative — uncomment the lines below and remove the Formspree action above:
-            <form name="short-term-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-form="stays" novalidate>
+          <form name="short-term-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-form="stays" novalidate>
             <input type="hidden" name="form-name" value="short-term-inquiry">
-            -->
 
             <!-- Honeypot -->
             <div class="form-hp" aria-hidden="true">
               <label for="stays-hp">Do not fill this out</label>
-              <input type="text" id="stays-hp" name="_gotcha" tabindex="-1" autocomplete="off">
+              <input type="text" id="stays-hp" name="bot-field" tabindex="-1" autocomplete="off">
             </div>
-
-            <input type="hidden" name="_subject" value="New Short-Term Rental Inquiry">
 
             <div class="form-grid form-grid--two">
               <div class="form-group">

@@ -667,22 +667,14 @@
         </div>
 
         <div class="form-section">
-          <!-- Formspree endpoint — replace TK-FORMSPREE-DRIVER-ID with your Formspree form ID -->
-          <form action="https://formspree.io/f/TK-FORMSPREE-DRIVER-ID" method="POST" data-form="driver" novalidate>
-
-            <!--
-            Netlify Forms alternative — uncomment the lines below and remove the Formspree action above:
-            <form name="driver-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-form="driver" novalidate>
+          <form name="driver-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-form="driver" novalidate>
             <input type="hidden" name="form-name" value="driver-inquiry">
-            -->
 
             <!-- Honeypot for spam -->
             <div class="form-hp" aria-hidden="true">
               <label for="driver-hp">Do not fill this out</label>
-              <input type="text" id="driver-hp" name="_gotcha" tabindex="-1" autocomplete="off">
+              <input type="text" id="driver-hp" name="bot-field" tabindex="-1" autocomplete="off">
             </div>
-
-            <input type="hidden" name="_subject" value="New Gig Driver Rental Inquiry">
 
             <div class="form-grid form-grid--two">
               <div class="form-group">
