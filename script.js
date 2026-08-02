@@ -364,6 +364,64 @@
     });
   }
 
+  /* ---------- Promotional Pop-up (Rotating Posters) ---------- */
+  function initPromoPopup() {
+    var popup = document.querySelector('.promo-popup');
+    if (!popup) return;
+
+    var posters = [
+      'images/Groundwork Marketplace Posters 1.1.png',
+      'images/Groundwork Marketplace Posters 2.1.png',
+      'images/Groundwork Marketplace Posters 3.1.png'
+    ];
+
+    // Track which poster to show using localStorage
+    var visitCount = parseInt(localStorage.getItem('gwr-visit-count') || '0', 10);
+    var posterIndex = visitCount % posters.length;
+
+    // Increment visit count for next time
+    localStorage.setItem('gwr-visit-count', String(visitCount + 1));
+
+    // Check if popup was already dismissed this session
+    if (sessionStorage.getItem('gwr-popup-dismissed')) return;
+
+    var popupImg = popup.querySelector('.promo-popup__img');
+    var closeBtn = popup.querySelector('.promo-popup__close');
+    var overlay = popup.querySelector('.promo-popup__overlay');
+
+    if (popupImg) {
+      popupImg.src = posters[posterIndex];
+      popupImg.alt = 'Groundwork Rentals — Weekly car rentals for gig drivers in Winter Haven, FL';
+    }
+
+    // Show popup after a short delay
+    setTimeout(function () {
+      popup.classList.add('is-visible');
+      document.body.style.overflow = 'hidden';
+      if (closeBtn) closeBtn.focus();
+    }, 1500);
+
+    function closePopup() {
+      popup.classList.remove('is-visible');
+      document.body.style.overflow = '';
+      sessionStorage.setItem('gwr-popup-dismissed', 'true');
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closePopup);
+    }
+
+    if (overlay) {
+      overlay.addEventListener('click', closePopup);
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && popup.classList.contains('is-visible')) {
+        closePopup();
+      }
+    });
+  }
+
   /* ---------- Init All ---------- */
   function init() {
     initNav();
@@ -373,6 +431,7 @@
     initLightbox();
     initLazyLoad();
     initYear();
+    initPromoPopup();
   }
 
   if (document.readyState === 'loading') {

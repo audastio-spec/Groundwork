@@ -2044,6 +2044,79 @@ p {
   .vehicle-card:nth-child(3) { animation-delay: 0.3s; }
 }
 
+/* ---------- Promotional Pop-up ---------- */
+.promo-popup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  align-items: center;
+  justify-content: center;
+}
+
+.promo-popup.is-visible {
+  display: flex;
+}
+
+.promo-popup__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.promo-popup__content {
+  position: relative;
+  z-index: 1;
+  max-width: 480px;
+  width: 90%;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+  animation: popupSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes popupSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.promo-popup__img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.promo-popup__close {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: var(--text-xl);
+  line-height: 1;
+  transition: background var(--transition);
+  z-index: 2;
+}
+
+.promo-popup__close:hover {
+  background: rgba(0, 0, 0, 0.85);
+}
+
 /* ---------- Print ---------- */
 @media print {
   .site-header,
