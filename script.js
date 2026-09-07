@@ -1,5 +1,5 @@
 /* ==========================================================================
-   TK-BUSINESS-NAME — Site JavaScript
+   Groundwork Rental — Site JavaScript
    No dependencies. Vanilla JS only.
    ========================================================================== */
 
@@ -11,6 +11,10 @@
     var toggle = document.querySelector('.nav-toggle');
     var nav = document.querySelector('.site-nav');
     if (!toggle || !nav) return;
+
+    nav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { nav.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); });
+    });
 
     toggle.addEventListener('click', function () {
       var expanded = toggle.getAttribute('aria-expanded') === 'true';
@@ -45,7 +49,8 @@
         var target = document.querySelector(targetId);
         if (target) {
           e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+          if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
           target.focus({ preventScroll: true });
         }
       });
@@ -55,6 +60,13 @@
   /* ---------- Form Validation & Submission ---------- */
   function initForms() {
     document.querySelectorAll('[data-form]').forEach(function (form) {
+      var campaign = new URLSearchParams(window.location.search);
+      ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (key) {
+        var field = form.querySelector('[name="' + key + '"]');
+        if (field) field.value = (campaign.get(key) || '').slice(0, 150);
+      });
+      var sourcePage = form.querySelector('[name="source_page"]');
+      if (sourcePage) sourcePage.value = window.location.pathname;
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         if (validateForm(form)) {
@@ -106,6 +118,14 @@
         if (!firstError) firstError = field;
       }
     });
+
+    var pickup = form.querySelector('[name="pickup_date"]');
+    var returnDate = form.querySelector('[name="return_date"]');
+    if (pickup && returnDate && pickup.value && returnDate.value && returnDate.value < pickup.value) {
+      showFieldError(returnDate, 'Return date must be on or after pickup date.');
+      isValid = false;
+      if (!firstError) firstError = returnDate;
+    }
 
     if (firstError) {
       firstError.focus();
@@ -172,7 +192,9 @@
   }
 
   function submitForm(form) {
-    var action = form.getAttribute('action');
+    var action = form.getAttribute('action') || '/';
+    var status = form.querySelector('[data-submit-error]');
+    if (status) { status.hidden = true; status.textContent = ''; }
     var submitBtn = form.querySelector('[type="submit"]');
     var originalText = submitBtn ? submitBtn.textContent : '';
 
@@ -185,9 +207,9 @@
 
     fetch(action, {
       method: 'POST',
-      body: formData,
+      body: new URLSearchParams(formData).toString(),
       headers: {
-        'Accept': 'application/json'
+        'Content-Type': 'application/x-www-form-urlencoded'
       }
     })
       .then(function (response) {
@@ -198,9 +220,11 @@
         }
       })
       .catch(function () {
-        // Show success anyway for demo/development since Formspree
-        // endpoint may not be configured yet
-        showFormSuccess(form);
+        if (status) {
+          status.textContent = 'Your inquiry could not be sent. Your details are still here. Please try again, call (863) 289-8332, or email driver@groundworkrental.com.';
+          status.hidden = false;
+          status.focus();
+        }
       })
       .finally(function () {
         if (submitBtn) {
@@ -364,64 +388,6 @@
     });
   }
 
-  /* ---------- Promotional Pop-up (Rotating Posters) ---------- */
-  function initPromoPopup() {
-    var popup = document.querySelector('.promo-popup');
-    if (!popup) return;
-
-    var posters = [
-      'images/Groundwork Marketplace Posters 1.1.png',
-      'images/Groundwork Marketplace Posters 2.1.png',
-      'images/Groundwork Marketplace Posters 3.1.png'
-    ];
-
-    // Track which poster to show using localStorage
-    var visitCount = parseInt(localStorage.getItem('gwr-visit-count') || '0', 10);
-    var posterIndex = visitCount % posters.length;
-
-    // Increment visit count for next time
-    localStorage.setItem('gwr-visit-count', String(visitCount + 1));
-
-    // Check if popup was already dismissed this session
-    if (sessionStorage.getItem('gwr-popup-dismissed')) return;
-
-    var popupImg = popup.querySelector('.promo-popup__img');
-    var closeBtn = popup.querySelector('.promo-popup__close');
-    var overlay = popup.querySelector('.promo-popup__overlay');
-
-    if (popupImg) {
-      popupImg.src = posters[posterIndex];
-      popupImg.alt = 'Groundwork Rentals — Weekly car rentals for gig drivers in Winter Haven, FL';
-    }
-
-    // Show popup after a short delay
-    setTimeout(function () {
-      popup.classList.add('is-visible');
-      document.body.style.overflow = 'hidden';
-      if (closeBtn) closeBtn.focus();
-    }, 1500);
-
-    function closePopup() {
-      popup.classList.remove('is-visible');
-      document.body.style.overflow = '';
-      sessionStorage.setItem('gwr-popup-dismissed', 'true');
-    }
-
-    if (closeBtn) {
-      closeBtn.addEventListener('click', closePopup);
-    }
-
-    if (overlay) {
-      overlay.addEventListener('click', closePopup);
-    }
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && popup.classList.contains('is-visible')) {
-        closePopup();
-      }
-    });
-  }
-
   /* ---------- Init All ---------- */
   function init() {
     initNav();
@@ -431,7 +397,6 @@
     initLightbox();
     initLazyLoad();
     initYear();
-    initPromoPopup();
   }
 
   if (document.readyState === 'loading') {

@@ -2132,3 +2132,14 @@ p {
     background: #fff;
   }
 }
+
+/* Inquiry reliability and accessible section navigation. */
+[id] { scroll-margin-top: 7rem; }
+.submit-error { padding: 1rem; border: 2px solid #a12f25; color: #84251e; background: #fff5f3; border-radius: .5rem; }
+.submit-error[hidden] { display: none; }
+.form-note { font-size: .875rem; margin-top: 1rem; line-height: 1.6; }
+.social-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; padding: 1rem; }
+.social-links a { text-decoration: underline; text-underline-offset: .2em; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+
+.splash-intro { max-width: 44rem; margin: 0 auto 2rem; text-align: center; line-height: 1.7; color: #dce2eb; padding: 0 1rem; }
