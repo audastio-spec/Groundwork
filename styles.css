@@ -2132,3 +2132,19 @@ p {
     background: #fff;
   }
 }
+
+/* Inquiry reliability and accessible section navigation. */
+[id] { scroll-margin-top: 7rem; }
+.submit-error { padding: 1rem; border: 2px solid #a12f25; color: #84251e; background: #fff5f3; border-radius: .5rem; }
+.submit-error[hidden] { display: none; }
+.form-note { font-size: .875rem; margin-top: 1rem; line-height: 1.6; }
+.social-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; padding: 1rem; }
+.social-links a { text-decoration: underline; text-underline-offset: .2em; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+
+.splash-intro { max-width: 44rem; margin: 0 auto 2rem; text-align: center; line-height: 1.7; color: #dce2eb; padding: 0 1rem; }
+
+/* Prelaunch information and customer guides */
+.launch-note{background:#fff2d9;color:#332516;padding:1rem 1.5rem;line-height:1.65;text-align:center;font-size:1rem;max-width:100%;}.launch-note a{color:#214f56;text-decoration:underline}.splash>.launch-note{max-width:790px;border-radius:12px;margin-bottom:1.5rem}.guide-footer{text-align:center;padding:1.2rem;line-height:1.8}.guide-footer a{color:inherit;text-decoration:underline}.reading{max-width:760px;margin:auto;padding:2.5rem 1.25rem;line-height:1.85}.reading h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;margin-bottom:1.5rem}.reading h2{font-size:1.5rem;margin:2rem 0 .6rem}.reading p,.reading ul,.reading ol{margin-bottom:1.2rem}.reading ul,.reading ol{padding-left:1.5rem}.reading a{text-decoration:underline}.guide-card{display:block;border:1px solid #ddd;border-radius:12px;padding:1.5rem;margin:1rem 0}.reading .launch-note{text-align:left;border-radius:12px}.splash-intro a{color:inherit;text-decoration:underline}
+
+.reading .guide-card{text-decoration:none}.guide-card:hover h2,.guide-card:focus h2{text-decoration:underline}.guide-card h2{margin-top:0}.guide-card p{margin-bottom:0}

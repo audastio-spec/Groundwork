@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.groundworkrental.com/</loc>
+    <loc>https://groundworkrental.com/</loc>
     <lastmod>2026-07-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.groundworkrental.com/drivers.html</loc>
+    <loc>https://groundworkrental.com/drivers.html</loc>
     <lastmod>2026-07-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.groundworkrental.com/stays.html</loc>
+    <loc>https://groundworkrental.com/stays.html</loc>
     <lastmod>2026-07-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.groundworkrental.com/about.html</loc>
+    <loc>https://groundworkrental.com/about.html</loc>
     <lastmod>2026-07-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.groundworkrental.com/contact.html</loc>
+    <loc>https://groundworkrental.com/contact.html</loc>
     <lastmod>2026-07-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.groundworkrental.com/privacy.html</loc>
+    <loc>https://groundworkrental.com/privacy.html</loc>
     <lastmod>2026-07-25</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://www.groundworkrental.com/terms.html</loc>
+    <loc>https://groundworkrental.com/terms.html</loc>
     <lastmod>2026-07-25</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
-</urlset>
+<url><loc>https://groundworkrental.com/rental-guides.html</loc><lastmod>2026-09-07</lastmod></url><url><loc>https://groundworkrental.com/rental-quote-checklist.html</loc><lastmod>2026-09-07</lastmod></url><url><loc>https://groundworkrental.com/gig-rental-platform-checks.html</loc><lastmod>2026-09-07</lastmod></url></urlset>
